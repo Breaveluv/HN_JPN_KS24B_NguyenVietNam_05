@@ -1,165 +1,116 @@
 #include <stdio.h>
-int main() {
-        int menu, menu1;
-        int n = 0;
-        int index;
-        int temp;
-        int pos;
-        int j, key;
-        int arr[100];
-        int mid,right, left;
-        menu:
-        do {
-                printf("1.Nhap so phan tu v� gi� tri cho mang\n");
-                printf("2.In ra gi� tri c�c phan tu trong mang\n");
-                printf("3.Dem so luong cac so hoan hao co trong mang. Biet so hoan hao la so co tong cac uoc bang chinh no\n");
-                printf("4.Tim gia tri lon thu 2 trong mang, khong duoc sap xep mang\n");
-                printf("5.Them mot phan tu vao vi tri ngau nhien trong mang, phan tu moi them vao mang va vi tri them vao phai do nguoi dung nhap vao,chi them phan tu do vao mangneu phan tu do chua ton tai trong mang	\n");
-                printf("6..Xoa phan tu tai mot vi tri cu the (nguoi dung nhap vi tri)\n");
-                printf("7.Sap xep mang theo thu tu tang dan (Insertion sort)\n");
-                printf("8.Cho nguoi dung nhap vao mot phan tu, tim kiem xem phan tu do co ton tai trong mang hay khong (Binary search).\n");
-                printf("9.Sap xep lai mang va hien thi ra toan bo phan tu co trong mang sao cho toan bo so chan dung truoc, so le dung sau.\n");
-                printf("10.Dao nguoc thu tu cua cac phan tu co trong mang\n");
-                printf("11.Thoat!\n");
-                printf("_____MOI BAN NHAP LUA CHON CUA MINH_____ ");
-                scanf("%d", &menu);
-        }while(menu > 11 || menu < 1);
 
-              switch (menu) {
-                case 1:
-                        do {
-                                printf("Nh?p s? ph?n t?: ");
-                                scanf("%d", &n);
-                                if(n < 1 || n > 100) {
-                                        printf("invalid!!\n");
-                                }
-                        }while (n < 1 || n > 100);
-
-                          for (int i = 0; i < n; i++) {
-                                printf("Nhap gia tri phan tu arr[%d]: ", i);
-                                scanf("%d", &arr[i]);
-                        }
-                        
-                        break;
-
-                case 2:
-                        if( n == 0) {
-                                printf("Chua nhap mang\n");
-                                goto menu1;
-                        }
-                        for (int i = 0; i < n; i++) {
-                                printf("arr[%d]\n", arr[i]);
-                        }
-                        
-                        break;
-
-                case 3:
-                        if( n == 0) {
-                                printf("Chua nhap mang\n");
-                                goto menu1;
-                        }
-                        index = 0;
-                       for (int i = 0; i < n; i++) {
-                               temp = 0;
-                              for(int j = arr[i]; j > 0; j--) {
-                                      if(arr[i] % j == 0) {
-                                              temp++;
-                                      }
-                              }
-                               if(temp == 2) {
-                                       index++;
-                               }
-                        }
-
-
-                        printf(" tong so nguen to la %d", index);
-                        
-                        break;
-
-                case 4:
-                        if( n == 0) {
-                                printf("Chua nhap mang\n");
-                                goto menu1;
-                        }
-                        index = 0;
-                        for (int i = 0; i < n; i++) {
-                                if(arr[i] > arr[index]) {
-                                        index = i;
-                                }
-                        }
-                        temp = arr[index];
-                        arr[index] = arr[0];
-                        arr[0]  = temp;
-                         for (int i = 1; i < n; i++) {
-                                if(arr[i] > arr[index]) {
-                                        index = i;
-                                }
-                        }
-                        printf("Gia tri lon thu 2 la %d ", arr[index]);
-                        
-                        break;
-
-                case 5:
-                        if( n == 0) {
-                                printf("Chua nhap mang\n");
-                                goto menu1;
-                        }
-                        printf("vi tri muon them: ");
-                        scanf("%d", &pos);
-                        pos--;
-                         for (int i = n - 1; i > 0; i--) {
-                                 arr[i + 1] = arr[i];
-                                 if(i == pos){
-                                         printf("gia tri muon nhap: ");
-                                         scanf("%d", &arr[i]);
-                                         break;
-                                 }
-                         }
-                        n++;
-                         for (int i = 0; i < n; i++) {
-                                printf("arr[%d]\n", arr[i]);
-                        }
-                        break;
-
-                case 6:
-                        if( n == 0) {
-                                printf("Chua nhap mang\n");
-                                goto menu1;
-                        }
-                        printf("Vi tri can xoa: ");
-                        scanf("%d", &pos);
-                        pos--;
-                        for(int i = pos; i < n; i++) {
-                                arr[i] = arr[i+ 1];
-                        }
-                        n--;
-                        for (int i = 0; i < n; i++) {
-                                printf("arr[%d]\n", arr[i]);
-                        }
-                        
-                        break;
-
-           
-case 11:
-                        if( n == 0) {
-                                printf("Chua nhap mang\n");
-                                goto menu1;
-                        }
-                        printf("Da thoat!");
-                        return 0;
-                menu1:
-                printf("\n");
-                do {
-                        printf("1.Back to menu\n");
-                        printf("2.Exit\n");
-                        scanf("%d", &menu1);
-                }while (menu1 != 1 && menu1 != 2);
-                if(menu1 == 1) {
-                      
-                }else {
-                        return 0;
+    int main() {
+    int choice = 0;
+    int length=0;
+    int add = 0;
+    int delete=0;
+    int a[100];
+    int addNumber;
+    int deleteNumber;
+    int searchNumber;
+    int sort=0;
+    while(choice!=11){
+        printf("MENU\n");
+        printf("1. Nhap so phan tu va gia tri cho mang\n");
+        printf("2. In ra gia tri cac phan tu trong mang\n");
+        printf("3. Đem so luong so hoan hao co trong mang\n");
+        printf("4. Tim gia tri nho thu 2 trong mang\n");
+        printf("5. Them mot phan tu vao vi tri đau tien trong mang\n");
+        printf("6. Xoa phan tu tai mot vi tri cu the\n");
+        printf("7. Sap xep mang theo thu tu giam dan\n");
+        printf("8. Tim kiem phan tu trong mang\n");
+        printf("9. Sap xep lai mang va hien thi ra toan bo phan tu co trong mang sao cho toan bo so le đung truoc, so chan đung sau\n");
+        printf("10. Đao nguoc thu tu của các phan tu trong mang va hien thi toan bo\n");
+        printf("11. Thoát\n");
+        printf("Hãy nhập lựa chọn của bạn : ");
+        scanf("%d",&choice);
+        if (choice==1){
+            printf("Hãy nhập độ dài mảng : ");
+            scanf("%d",&length);
+            for(int i = 0;i<(length+add-delete);i++){
+                printf("Hãy nhập phần tử a[%d] : ",i);
+                scanf("%d",&a[i]);
+            }
+        }else if(choice==2){
+            if(length==0){
+                printf("\nBạn chưa nhập phần tử cho mảng\n\n");
+            }else{
+                printf("Các phần tử của mảng là:\n");
+                for(int i = 0;i<(length+add-delete);i++){
+                    
+                    printf("a[%d] = %d\n",i,a[i]);
                 }
-
-                        break;
-        }
+            }
+        }else if(choice==3){
+            if(length==0){
+                printf("\nBạn chưa nhập phần tử cho mảng\n\n");
+            }else{
+                int condition=0;
+                for(int i = 0;i<(length+add-delete);i++){
+                    int perfect=0;
+                    for(int j = 1;j<a[i];j++){
+                        if(a[i]%j==0){
+                            perfect=perfect+j;
+                        }
+                    }
+                    if(perfect==a[i]){
+                        printf("\nSố hoàn hảo có trong mảng là : %d\n",a[i]);
+                        condition++;
+                    }
+                }
+                if(condition==0){
+                    printf("\nKhông có số hoàn hảo trong mảng\n\n");
+                }
+            }
+        }else if(choice == 4){
+            if(length==0){
+                printf("\nBạn chưa nhập phần tử cho mảng\n\n");
+            }else{
+                int max=0;
+                int temp;
+                for(int i =1;i<(length+add-delete);i++){
+                    if(a[i]>a[max]){
+                        max=i;
+                        temp = a[i];
+                    }
+                }
+                a[max]=0;
+                int MAX=0;
+                for(int i = 0;i<(length+add-delete);i++){
+                    if(a[i]>a[MAX]){
+                        MAX=i;
+                    }
+                }
+                printf("\nSố lớn thứ 2 trong mảng là :  %d\n",a[MAX]);
+                a[max]=temp;
+                printf("\n");
+            }
+        }else if(choice==5){
+            if(length==0){
+                printf("\nBạn chưa nhập phần tử cho mảng\n\n");
+            }else{
+                for(int i=(length+add-delete);i>0;i--){
+                    a[i]=a[i-1];
+                    
+                }
+                add++;
+                printf("Hãy nhập phần tử bạn muốn thêm vào vị trí đầu tiên của mảng : ");
+                scanf("%d",&addNumber);
+                a[0]=addNumber;
+            }
+        }else if(choice==6){
+            if(length==0){
+                printf("\nBạn chưa nhập phần tử cho mảng\n\n");
+            }else{
+                printf("Hãy chọn vị trí bạn muốn xóa phần tử : ");
+                scanf("%d",&deleteNumber);
+                for(int i=deleteNumber;i<(length+add-delete);i++){
+                    a[i]=a[i+1];
+                }
+                delete++;
+            }
+        }    
+    }
+            return 0;
 }
